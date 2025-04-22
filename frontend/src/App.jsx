@@ -1,7 +1,18 @@
 import React from 'react'
-import { Button, ButtonGroup, Stack, Flex } from "@chakra-ui/react"
+import { Button, Stack, Flex } from "@chakra-ui/react"
+import { useState } from 'react'
 
 const App = () => {
+  const [loading, setLoading] = useState(false)
+
+  const handleClick = () =>{
+    setLoading(true);
+
+    setTimeout(() => {
+      setLoading(false);
+    }, 500);
+  }
+  
   return (
     <Flex 
       width="100%" 
@@ -11,11 +22,11 @@ const App = () => {
       backgroundColor="gray.200"
     >
       <Stack direction="row" gap="4" align="center">
-        <Button loading>Click me</Button>
-        <Button loading loadingText="Saving...">
-          Click me
-        </Button>
-        <Button colorScheme="teal">New Button</Button>
+        <Button 
+        onClick={() => handleClick()} 
+        loading={loading}
+        variant={"subtle"}
+        >Click me</Button>
       </Stack>
     </Flex>
   )
